@@ -1,0 +1,65 @@
+# TASM Executables and Tools (proprietary software)
+tasm/
+*.EXE
+*.exe
+*.COM
+*.com
+
+# Assembly build artifacts
+*.OBJ
+*.obj
+*.MAP
+*.map
+*.LST
+*.lst
+*.BAK
+*.bak
+
+# Generated executables from assembly files
+pens/*.EXE
+pens/*.exe
+pens/*.OBJ
+pens/*.obj
+pens/*.MAP
+pens/*.map
+pens/*.LST
+pens/*.lst
+pens/*.BAK
+pens/*.bak
+
+# Docker build artifacts
+.dockerignore
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Log files
+*.log
+logs/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Backup files
+*.backup
+*.old

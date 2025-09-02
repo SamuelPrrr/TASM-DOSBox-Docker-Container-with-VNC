@@ -1,0 +1,43 @@
+FROM ubuntu:22.04
+
+# Avoid interactive prompts during package installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    dosbox \
+    wget \
+    curl \
+    unzip \
+    x11vnc \
+    xvfb \
+    fluxbox \
+    supervisor \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create directories for DOS environment
+RUN mkdir -p /dos/tasm /dos/pens /root/.dosbox
+
+# Copy TASM files if they exist locally, otherwise create placeholder
+COPY tasm/ /dos/tasm/
+# If no TASM files, we'll set up a basic DOS environment
+
+# Set up DOSBox configuration
+COPY config/dosbox.conf /root/.dosbox/dosbox-0.74-3.conf
+
+# Create startup script
+COPY scripts/start-dosbox.sh /start-dosbox.sh
+RUN chmod +x /start-dosbox.sh
+
+# Create supervisor configuration
+COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose VNC port
+EXPOSE 5900
+
+# Set working directory
+WORKDIR /dos/pens
+
+# Start supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

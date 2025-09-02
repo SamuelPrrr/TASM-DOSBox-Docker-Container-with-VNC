@@ -1,0 +1,15 @@
+services:
+  tasm-dosbox:
+    build: .
+    container_name: tasm-dosbox
+    ports:
+      - "5900:5900"  # VNC port
+    volumes:
+      - ./pens:/dos/pens  # Mount local pens directory
+      - ./asm-files:/dos/asm-files  # Additional directory for assembly files
+      - ./pens:/dos/workspace  # Combined workspace directory
+    environment:
+      - DISPLAY=:99
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
