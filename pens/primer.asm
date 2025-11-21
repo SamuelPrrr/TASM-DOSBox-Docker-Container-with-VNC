@@ -2,10 +2,10 @@ Pila Segment para stack 'stack'
     DB 64 dup('stack') ;Definimos espacio 
 Pila ENDS
 
-Datos segment para public 'data'
-    V1 dw 20
-    V2 dw 30
-    R dw ? 
+Datos Segment para public 'data'
+    V1 dw 20 //es igual a 14h en hexadecimal
+    V2 dw 30 // IE
+    R dw ?  // 32
 Datos ENDS
 
 Codigo Segment para public 'code'
